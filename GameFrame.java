@@ -8,7 +8,7 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.geom.Line2D.Double;
@@ -29,11 +29,12 @@ public class GameFrame
 class Mechanics extends Frame implements MouseListener, MouseMotionListener
 {
 	protected int mouseX, mouseY;
-	protected int appletWidth, appletHeight,elevation;
-	protected int height;
+	protected int appletWidth,appletHeight;
+	protected int height,elevation;
+	protected int platformX,platformY,prevX,prevY,prevPlatY;
+	protected final int difficulty;
 	protected static double velocity;
 	protected boolean gravity,above;
-	protected int platformX,platformY,prevX,prevY,prevPlatY;
 	protected Image virtualMem;
 	protected Image sprite;
 	protected Graphics gBuffer;
@@ -56,6 +57,7 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 		prevY = 0;
 		height = 0;
 		elevation = 0;
+		difficulty = 3;
 		gravity = true;
 		above = false;
 		generate = new Random();
@@ -74,7 +76,6 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 
 		int platformX = 0;
 		int platformY = 0;
-		int prevY = elevation;
 		platforms = new ArrayList<Platform>();
 		for(int c = 0; c < 100; c++)
 		{
@@ -156,8 +157,8 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 
 	public void moveScreen()
 	{
-		height+=3;
-		elevation-=3;
+		height+=difficulty;
+		elevation-=difficulty;
 	}
 
 	public void mouseEntered(MouseEvent e)  {}

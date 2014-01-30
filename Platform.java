@@ -1,7 +1,6 @@
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.geom.Line2D.Float;
 
 class Platform
 {
