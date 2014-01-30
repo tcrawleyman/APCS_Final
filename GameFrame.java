@@ -74,7 +74,7 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 
 		int platformX = 0;
 		int platformY = 0;
-		int prevY = 0;
+		int prevY = elevation;
 		platforms = new ArrayList<Platform>();
 		for(int c = 0; c < 100; c++)
 		{
@@ -96,7 +96,7 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 		setVelocity();
 		moveScreen();
 		g.drawImage(virtualMem,0,0,null);
-		delay(33);
+		delay(10);
 		repaint();
 	}
 
@@ -113,12 +113,11 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 	public void setVelocity()
 	{
 		prevY = elevation+2;
-		elevation += velocity;
 
 		if(velocity > -24.5)			//24.5
 			velocity -= .5;
-		else
-			velocity = 25.0;
+		
+		elevation += velocity;
 	}
 
 	public boolean getGravity()		{ return gravity; }
@@ -157,15 +156,8 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 
 	public void moveScreen()
 	{
-		if(elevation>height+750)
-		{
-			height+=20*velocity;
-//			above = true;
-		}
-//		if(elevation-750<height)
-//		above = false;
-		if(elevation<height-950)
-			System.out.println("You lose");
+		height+=3;
+		elevation-=3;
 	}
 
 	public void mouseEntered(MouseEvent e)  {}
