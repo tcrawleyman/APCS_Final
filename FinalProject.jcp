@@ -27,6 +27,9 @@
 	<files>
 		<include>
 			<fileitem>
+				<path>BreakPlatform.java</path>
+			</fileitem>
+			<fileitem>
 				<path>Cloud.java</path>
 			</fileitem>
 			<fileitem>
@@ -34,6 +37,9 @@
 			</fileitem>
 			<fileitem>
 				<path>GameGraphics.java</path>
+			</fileitem>
+			<fileitem>
+				<path>MovePlatform.java</path>
 			</fileitem>
 			<fileitem>
 				<path>Platform.java</path>
