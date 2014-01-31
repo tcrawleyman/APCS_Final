@@ -13,10 +13,10 @@ public class GameGraphics
 		generate = new Random();
 
 		clouds = new ArrayList<Cloud>();
-		for(int c = 0; c < 250; c++)
+		for(int c = 0; c < 100; c++)
 		{
 			int x = generate.nextInt(950);
-			int y = generate.nextInt(25000)-24500;
+			int y = generate.nextInt(10000)-9500;
 			clouds.add(new Cloud(x,y));
 		}
 	}

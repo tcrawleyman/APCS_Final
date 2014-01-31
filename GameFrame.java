@@ -39,8 +39,6 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 	protected Image sprite;
 	protected Graphics gBuffer;
 	protected static ArrayList<Platform> platforms;
-	protected ArrayList<BreakPlatform> bPlatforms;
-	protected ArrayList<MovePlatform> mPlatforms;
 	protected Random generate;
 
 	public Mechanics()
@@ -59,7 +57,7 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 		prevY = 0;
 		height = 0;
 		elevation = 0;
-		difficulty = 0;
+		difficulty = 3;
 		gravity = true;
 		above = false;
 		generate = new Random();
@@ -79,22 +77,13 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 		int platformX = 0;
 		int platformY = 0;
 		platforms = new ArrayList<Platform>();
-		bPlatforms = new ArrayList<BreakPlatform>();
-		mPlatforms = new ArrayList<MovePlatform>();
-		for(int c = 0; c < 10; c++)
+		for(int c = 0; c < 100; c++)
 		{
 			platformX = generate.nextInt(900);
 			platformY = generate.nextInt(500)-c*250;
-			if(platformY-prevPlatY > 400)
-				platformY = generate.nextInt(500)-c*250;
-			int select = generate.nextInt(10);
-			if(select == 0)
-				bPlatforms.add(new BreakPlatform(platformX,platformY));
-			else if(select == 1)
-				mPlatforms.add(new MovePlatform(platformX,platformY));
-			else
-				platforms.add(new Platform(platformX,platformY));
+			Platform platform = new Platform(platformX,platformY);
 			prevPlatY = platformY;
+			platforms.add(platform);
 		}
 	}
 
@@ -103,12 +92,12 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 		GameGraphics.background(gBuffer,height);
 //		GameGraphics.title(gBuffer);
 		GameGraphics.sprite(gBuffer,mouseX,elevation);
+		drawPlatforms(gBuffer,height);
 		checkBounce(mouseX,elevation,prevX,prevY);
 		setVelocity();
 		moveScreen();
-		drawPlatforms(gBuffer,height);
 		g.drawImage(virtualMem,0,0,null);
-		delay(1000/80);
+		delay(10);
 		repaint();
 	}
 
@@ -128,9 +117,7 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 
 		if(velocity > -24.5)			//24.5
 			velocity -= .5;
-		else
-			velocity = 25;
-
+		
 		elevation += velocity;
 	}
 
@@ -155,16 +142,7 @@ class Mechanics extends Frame implements MouseListener, MouseMotionListener
 				if(checkPath(platforms.get(c),mouseX,elevation,prevX,prevY))
 				{
 					elevation = 700-platforms.get(c).tlY-48;
-//					velocity = 25.0;
-				}
-			}
-			for(int c = 0; c < bPlatforms.size(); c++)
-			{
-				if(checkPath(bPlatforms.get(c),mouseX,elevation,prevX,prevY))
-				{
-					elevation = 700-platforms.get(c).tlY-48;
 					velocity = 25.0;
-					bPlatforms.remove(c);
 				}
 			}
 		}
