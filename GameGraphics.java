@@ -16,7 +16,7 @@ public class GameGraphics
 		for(int c = 0; c < 100; c++)
 		{
 			int x = generate.nextInt(950);
-			int y = generate.nextInt(10000)-9500;
+			int y = generate.nextInt(23000)-22500;
 			clouds.add(new Cloud(x,y));
 		}
 	}
