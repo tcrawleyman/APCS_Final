@@ -13,7 +13,7 @@ public class Cloud
 	{
 		this.tlX = tlX;
 		this.tlY = tlY;
-		try { cloud = ImageIO.read(new File("needcloud.png")); }
+		try { cloud = ImageIO.read(new File("cloud.png")); }
 		catch (IOException e) {}
 	}
 

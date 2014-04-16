@@ -17,8 +17,8 @@ public class GameGraphics
 	public static void init()
 	{
 		generate = new Random();
+
 		clouds = new ArrayList<Cloud>();
-		
 		for(int c = 0; c < 100; c++)
 		{
 			int x = generate.nextInt(950);
